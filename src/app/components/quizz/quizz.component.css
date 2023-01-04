@@ -1,7 +1,7 @@
 .quizz__container {
   width: 80%;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .quizz_logo {
@@ -37,6 +37,7 @@
   justify-content: center;
   margin: auto;
   margin-bottom: 20px;
+  gap: 20px;
 }
 
 .btn_option {
@@ -44,7 +45,6 @@
   border-radius: 8px;
   border: 1px solid #18ab29;
   width: 48%;
-  gap: 20px;
   display: inline;
   cursor: pointer;
   color: #ffffff;
