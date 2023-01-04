@@ -38,6 +38,7 @@ export class QuizzComponent implements OnInit {
 
   playerChoose(value: string) {
     this.answers.push(value)
+    this.nextStep()
   }
 
   async nextStep() {
@@ -46,7 +47,22 @@ export class QuizzComponent implements OnInit {
     if (this.questionMaxIndex > this.questionIndex) {
       this.questionSelected = this.questions[this.questionIndex]
     } else {
+      const finalAnswer: string = await this.checkResult(this.answers)
       this.finished = true
+      this.answerSelected = quizz_questions.results[finalAnswer as keyof typeof quizz_questions.results]
+      // forçamos o algoritmo entender que o finalAnswer é uma chave do mesmo tipo que nosso results, sendo A ou B
     }
+  }
+
+  async checkResult(answers: string[]) {
+    const result = answers.reduce((previous, current, i, arr) => {
+      if (arr.filter(item => item === previous).length > arr.filter(item => item === current).length ) {
+        return previous
+      } else {
+        return current
+      }
+    })
+
+    return result
   }
 }
